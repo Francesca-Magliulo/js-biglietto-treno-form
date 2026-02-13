@@ -27,6 +27,8 @@ function prezzo(evento) {
         console.log(prezzoFinale)
     }
 
+    eta.value = ""
+    chilometri.value = ""
 
     console.log("Il prezzo del biglietto è €" + prezzoFinale.toFixed(2));
 }
