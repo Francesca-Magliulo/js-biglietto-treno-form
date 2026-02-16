@@ -1,12 +1,4 @@
 
-
-/*Solo una volta che il milestone 1 sarà completo e funzionante allora realizzeremo un form in pagina in cui l’utente potrà inserire i dati
- e visualizzare il calcolo finale con il prezzo. 
-Il recap dei dati e l'output del prezzo finale, andranno quindi stampati in pagina
- (il prezzo dovrà essere formattato con massimo due decimali, per indicare i centesimi sul prezzo). Questo richiederà un minimo di ricerca.
-*/
-
-
 let chilometri = document.getElementById("km-field")
 let eta = document.getElementById("eta-field")
 
@@ -44,7 +36,70 @@ function prezzo(evento) {
 }
 
 
+/*
+let chilometri = document.getElementById("km-field")
+let eta = document.getElementById("eta-field")
 
+let form = document.querySelector("form")
+
+form.addEventListener("submit", prezzo)
+
+ function calcolaPrezzo (chilometri, eta) {
+
+    let prezzoBase = chilometri * 0.21;
+    let prezzoFinale;
+
+    if (eta < 18) {
+        prezzoFinale = prezzoBase - (prezzoBase * 20 / 100);
+    } else if (eta> 65) {
+        prezzoFinale = prezzoBase - (prezzoBase * 40 / 100);
+    } else {
+        prezzoFinale = prezzoBase;
+    }
+    return prezzoFinale
+ }
+
+function prezzo(evento) {
+
+    evento.preventDefault()
+
+    let numeroKm = parseFloat(chilometri.value)
+    let numeroEta = parseInt(eta.value)
+    
+
+    if(!validaInput(numeroKm, numeroEta)) {
+        return
+    }
+    
+    let prezzoFinale = calcolaPrezzo(numeroKm, numeroEta)
+
+    let kmCard = document.getElementById("km-card")
+    let etaCard = document.getElementById("eta-card")
+    let priceCard = document.getElementById("price-card")
+
+
+
+    kmCard.innerHTML = numeroKm
+    etaCard.innerHTML = numeroEta
+    priceCard.innerHTML = prezzoFinale.toFixed(2)
+
+    eta.value = ""
+    chilometri.value = ""
+
+}
+
+
+function validaInput(numeroKm, numeroEta) {
+
+    if(isNaN(numeroKm) || numeroKm <= 0 ) {
+     return false   
+    }else if (isNaN(numeroEta) || numeroEta <= 0) {
+        return false
+    } else {
+        return true
+        }
+}
+*/
 
 
 
