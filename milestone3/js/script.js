@@ -1,11 +1,13 @@
 /*
+Implementazioni:
+
 1) validazione input
 
 2) mostrare sconto nella card
 
 3) pulsante nuovo calcolo + nascondi card
 
-4) lista transazioni 
+4) lista storico calcoli 
 */
 
 let chilometri = document.getElementById("km-field")
@@ -15,7 +17,14 @@ let form = document.querySelector("form")
 
 let errorMessage = document.getElementById("error-message")
 
+let btnNuovoCalcolo = document.getElementById("new-button")
+let card = document.querySelector(".card")
+
+let listaStoricoCalcoli = document.getElementById("lista-storico")
+
 form.addEventListener("submit", prezzo)
+
+btnNuovoCalcolo.addEventListener("click", bottoneNuovoCalcolo)
 
 function calcolaPrezzo(chilometri, eta) {
 
@@ -46,22 +55,44 @@ function prezzo(evento) {
 
     let prezzoFinale = calcolaPrezzo(numeroKm, numeroEta)
 
+    let scontoApplicato;
+    if(numeroEta < 18) {
+        scontoApplicato = 20
+    } else if(numeroEta > 65) {
+        scontoApplicato = 40
+    } else {
+        scontoApplicato = 0
+    }
+
     let kmCard = document.getElementById("km-card")
     let etaCard = document.getElementById("eta-card")
     let priceCard = document.getElementById("price-card")
-
+    let scontoCard = document.getElementById("sconto-card")
 
 
     kmCard.innerHTML = numeroKm
     etaCard.innerHTML = numeroEta
     priceCard.innerHTML = prezzoFinale.toFixed(2)
 
+    //mostro nella card lo sconto applicato
+    scontoCard.innerHTML = scontoApplicato + "%"
+    //Mostro la card quando faccio un nuovo calcolo
+    card.style.display = "block"
+
     eta.value = ""
     chilometri.value = ""
 
+    //Creo la lista dello storico
+    let li = document.createElement("li")
+    //Applico una classe di stile ai li
+    li.classList.add("list-group-item")
+    li.innerHTML = `Km: ${numeroKm} | Età: ${numeroEta} | Prezzo: ${prezzoFinale.toFixed(2)}€ | Sconto: ${scontoApplicato}%`
+    // Aggiungo li a ul con prepend() per far apparire l'ultimo calcolo in alto
+    listaStoricoCalcoli.prepend(li)
+
 }
 
-//Validazione input
+//Funzione per validazione input
 function validaInput(numeroKm, numeroEta) {
 
     if (isNaN(numeroKm) || numeroKm <= 0) {
@@ -74,4 +105,21 @@ function validaInput(numeroKm, numeroEta) {
         errorMessage.innerHTML = ""
         return true
     }
+}
+
+//Funzione per bottone nuovo calcolo del prezzo: resetto gli innerHTML al click
+function bottoneNuovoCalcolo() {
+
+    let kmCard = document.getElementById("km-card")
+    let etaCard = document.getElementById("eta-card")
+    let priceCard = document.getElementById("price-card")
+    let scontoCard = document.getElementById("sconto-card")
+
+    kmCard.innerHTML = ""
+    etaCard.innerHTML = ""
+    priceCard.innerHTML = ""
+    scontoCard.innerHTML = ""
+
+    //Nascondo la card quando clicco "calcola nuovo prezzo"
+    card.style.display = "none"
 }

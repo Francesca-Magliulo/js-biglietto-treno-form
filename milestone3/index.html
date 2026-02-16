@@ -12,8 +12,8 @@
 
 <body>
     <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-6 col-lg-4">
+        <div class="row">
+            <div class="col-6">
 
                 <h2 class="mb-4">Acquista biglietto</h2>
 
@@ -21,13 +21,13 @@
                     <div class="mb-3 row">
 
                         <label for="text">Chilometri</label>
-                        <div class="col-sm-10">
+                        <div class="w-75">
                             <input type="text" class="form-control" id="km-field">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="text">Età</label>
-                        <div class="col-sm-10">
+                        <div class="w-75">
                             <input type="text" class="form-control" id="eta-field">
                         </div>
                     </div>
@@ -37,15 +37,22 @@
 
                 <p id="error-message" class="text-danger"></p>
 
-                <div class="card mt-5">
+                <div class="card mt-5 w-75" style="display: none;"> <!--Nascondo la card all'avvio della pagina-->
                     <div class="card-body">
                         <h5 class="card-title text-center">Il tuo biglietto</h5>
                         <p class="card-chilometri">Chilometri: <span id="km-card"></span></p>
                         <p class="card-eta">Età: <span id="eta-card"></span></p>
                         <p class="card-prezzo fw-bold">Prezzo: <span class="text-primary" id="price-card"></span></p>
-
+                        <p class="card-sconto">Sconto applicato: <span id="sconto-card"></span></p>
+                        <div class="d-grid col-6 mx-auto">
+                            <button id="new-button" class="btn btn-primary">Calcola nuovo prezzo</button>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-6">
+                <h2>Storico biglietti</h2>
+                <ul id="lista-storico" class="list-group"></ul>
             </div>
         </div>
     </div>
