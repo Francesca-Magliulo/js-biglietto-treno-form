@@ -1,13 +1,14 @@
 /*
 Implementazioni:
+1) Aggiungere condizione per sconto km >= 500
 
-1) validazione input
+2) validazione input
 
-2) mostrare sconto nella card
+3) mostrare sconto nella card
 
-3) pulsante nuovo calcolo + nascondi card
+4) pulsante nuovo calcolo + nascondi card
 
-4) lista storico calcoli 
+5) lista storico calcoli 
 */
 
 let chilometri = document.getElementById("km-field")
@@ -35,10 +36,16 @@ function calcolaPrezzo(chilometri, eta) {
         prezzoFinale = prezzoBase - (prezzoBase * 20 / 100);
     } else if (eta > 65) {
         prezzoFinale = prezzoBase - (prezzoBase * 40 / 100);
-    } else {
+    }else {
         prezzoFinale = prezzoBase;
     }
+
+    if(chilometri >= 500) {
+        prezzoFinale = prezzoFinale - (prezzoFinale * 10 / 100)
+    }
     return prezzoFinale
+
+
 }
 
 function prezzo(evento) {
@@ -62,6 +69,10 @@ function prezzo(evento) {
         scontoApplicato = 40
     } else {
         scontoApplicato = 0
+    }
+    //Aggiungo la condizione per cui se i km sono uguali o superiori a 500 si applica un ulteriore sconto del 10%
+    if(numeroKm >= 500) {
+        scontoApplicato += 10
     }
 
     let kmCard = document.getElementById("km-card")
